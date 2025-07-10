@@ -11,7 +11,7 @@ UsersApp es una aplicación web simple construida con React, que te permite gest
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/w1z4rd993/UsersApp.git
+   git clone https://github.com/w1z4rd993/users-app.git
    ```
 2. Navegar al directorio del proyecto:
    ```bash
