@@ -1,5 +1,18 @@
+import { useReducer } from "react";
 import { UserForm } from "./components/UserForm";
 import { UsersList } from "./components/UsersList";
+import { usersReducer } from "./reducers/usersReducer";
+
+
+
+const initialUsers = [
+    {
+        id: 1,
+        username: 'isaias',
+        password: '123456',
+        email: 'isaias123@gmail.com'
+    }
+]
 
 /**
  * Componente principal de la aplicación.
@@ -11,14 +24,22 @@ import { UsersList } from "./components/UsersList";
  */
 export const UsersApp = () => {
 
-    const initialUsers = [
-        {
-            id: 1,
-            username: 'isaias',
-            password: '123456',
-            email: 'isaias123@gmail.com'
-        }
-    ]
+    const [users, dispatch] = useReducer(usersReducer, initialUsers);
+    
+    /**
+     * Maneja el formulario de registro de usuarios.
+     * 
+     * Esta función se encarga de agregar un nuevo usuario
+     * a la lista de usuarios.
+     * @param {Object} user - El usuario que se va a agregar.
+     */
+    const handlerAddUser = (user) => {
+        dispatch({
+            type: 'addUser',
+            payload: user,
+        });
+        console.log(user);
+    }
     return (
         <div className="container my-4">
             <h2>Users App</h2>
@@ -26,11 +47,11 @@ export const UsersApp = () => {
             <div className="row">
 
                 <div className="col">
-                    <UserForm />
+                    <UserForm handlerAddUser={handlerAddUser} />
                 </div>
 
                 <div className="col">
-                    <UsersList users={initialUsers} />
+                    <UsersList users={users} />
                 </div>
 
             </div>

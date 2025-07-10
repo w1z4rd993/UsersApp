@@ -15,7 +15,7 @@ const initialUserForm = {
  * @returns {JSX.Element} Un JSX.Element que representa 
  * el formulario de usuario.
  */
-export const UserForm = () => {
+export const UserForm = ({ handlerAddUser }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
@@ -40,14 +40,14 @@ export const UserForm = () => {
     }
 
     const onSubmit = (event) => {
-      event.preventDefault();
+        event.preventDefault();
 
-      if (!username || !password || !email){
-        alert('Complete los campos del formulario');
-        return;
-      }
-      console.log(userForm);
-      setUserForm(initialUserForm);
+        if (!username || !password || !email) {
+            alert('Complete los campos del formulario');
+            return;
+        }
+        handlerAddUser(userForm);
+        setUserForm(initialUserForm);
     }
 
     return (
