@@ -10,6 +10,15 @@ import { UsersList } from "./components/UsersList";
  * @returns {JSX.Element} Un JSX.Element que representa el componente.
  */
 export const UsersApp = () => {
+
+    const initialUsers = [
+        {
+            id: 1,
+            username: 'isaias',
+            password: '123456',
+            email: 'isaias123@gmail.com'
+        }
+    ]
     return (
         <div className="container my-4">
             <h2>Users App</h2>
@@ -19,11 +28,11 @@ export const UsersApp = () => {
                 <div className="col">
                     <UserForm />
                 </div>
-                
+
                 <div className="col">
-                    <UsersList />
+                    <UsersList users={initialUsers} />
                 </div>
-            
+
             </div>
         </div>
     );
