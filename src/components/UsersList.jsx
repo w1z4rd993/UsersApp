@@ -7,7 +7,7 @@ import { UserRow } from "./UserRow";
  * 
  * @returns {JSX.Element} Un JSX.Element que representa el componente.
  */
-export const UsersList = ({ handlerRemoveUser, users = [] }) => {
+export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = [] }) => {
     return (
         <table className="table table-hover table-striped">
             <thead>
@@ -28,6 +28,8 @@ export const UsersList = ({ handlerRemoveUser, users = [] }) => {
                             username={username}
                             email={email}
                             handlerRemoveUser={handlerRemoveUser}
+                            handlerUserSelectedForm={handlerUserSelectedForm}
+
                         />
                     ))
                 }

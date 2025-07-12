@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { UserForm } from "./components/UserForm";
 import { UsersList } from "./components/UsersList";
 import { usersReducer } from "./reducers/usersReducer";
@@ -33,6 +33,8 @@ export const UsersApp = () => {
 
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
 
+    const [userSelected, setUserSelected] = useState(initialUserForm);
+
     /**
      * Maneja el formulario de registro de usuarios.
      * 
@@ -60,6 +62,11 @@ export const UsersApp = () => {
             payload: id
         });
     }
+
+    const handlerUserSelectedForm = (user) => {
+        setUserSelected({ ...user });
+    }
+
     return (
         <div className="container my-4">
             <h2>Users App</h2>
@@ -68,6 +75,7 @@ export const UsersApp = () => {
                     <UserForm
                         initialUserForm={initialUserForm}
                         handlerAddUser={handlerAddUser}
+                        userSelected={userSelected}
                     />
                 </div>
                 <div className="col">
@@ -75,6 +83,7 @@ export const UsersApp = () => {
                         ? <div className="alert alert-warning">No hay usuarios en el sistema</div>
                         : <UsersList
                             users={users}
+                            handlerUserSelectedForm={handlerUserSelectedForm}
                             handlerRemoveUser={handlerRemoveUser}
                         />}
 

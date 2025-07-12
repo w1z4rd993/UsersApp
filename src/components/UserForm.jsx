@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Componente para el formulario de usuario.
@@ -9,11 +9,18 @@ import { useState } from "react";
  * @returns {JSX.Element} Un JSX.Element que representa 
  * el formulario de usuario.
  */
-export const UserForm = ({ handlerAddUser , initialUserForm}) => {
+export const UserForm = ({ userSelected, handlerAddUser, initialUserForm }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
     const { username, password, email } = userForm;
+
+    useEffect(() => {
+        setUserForm({
+            ...userSelected,
+            password:''
+        });
+    }, [userSelected]);
 
 
     /**
@@ -33,6 +40,15 @@ export const UserForm = ({ handlerAddUser , initialUserForm}) => {
         })
     }
 
+    /**
+     * Maneja el submit del formulario de usuario.
+     * 
+     * Valida que los campos del formulario est n completos y
+     * llama a la funci n handlerAddUser() con el usuario
+     * construido en userForm. Luego, resetea el estado
+     * userForm con el valor de initialUserForm.
+     * @param {Object} event - El objeto de evento del formulario.
+     */
     const onSubmit = (event) => {
         event.preventDefault();
 
