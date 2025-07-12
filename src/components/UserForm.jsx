@@ -1,11 +1,5 @@
 import { useState } from "react";
 
-// Valores por defecto del useState para userForm
-const initialUserForm = {
-    username: '',
-    password: '',
-    email: ''
-}
 /**
  * Componente para el formulario de usuario.
  * 
@@ -15,7 +9,7 @@ const initialUserForm = {
  * @returns {JSX.Element} Un JSX.Element que representa 
  * el formulario de usuario.
  */
-export const UserForm = ({ handlerAddUser }) => {
+export const UserForm = ({ handlerAddUser , initialUserForm}) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
