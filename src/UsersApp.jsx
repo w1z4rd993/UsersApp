@@ -25,7 +25,7 @@ const initialUsers = [
 export const UsersApp = () => {
 
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
-    
+
     /**
      * Maneja el formulario de registro de usuarios.
      * 
@@ -38,7 +38,20 @@ export const UsersApp = () => {
             type: 'addUser',
             payload: user,
         });
-        console.log(user);
+    }
+
+    /**
+     * Maneja el eliminar un usuario de la lista.
+     * 
+     * Esta función se encarga de eliminar un usuario
+     * de la lista de usuarios.
+     * @param {number} id - El ID del usuario que se va a eliminar.
+     */
+    const handlerRemoveUser = (id) => {
+        dispatch({
+            type: 'removeUser',
+            payload: id
+        });
     }
     return (
         <div className="container my-4">
@@ -51,7 +64,7 @@ export const UsersApp = () => {
                 </div>
 
                 <div className="col">
-                    <UsersList users={users} />
+                    <UsersList users={users} handlerRemoveUser={handlerRemoveUser} />
                 </div>
 
             </div>

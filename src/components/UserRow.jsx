@@ -15,17 +15,38 @@
  * @returns {JSX.Element} Un JSX.Element que representa una fila de usuario.
  */
 
-export const UserRow = ({ id, username, email }) => {
+export const UserRow = ({ handlerRemoveUser, id, username, email }) => {
+
+    /**
+     * Maneja el clic en el botón de eliminar usuario.
+     * 
+     * Esta función se encarga de llamar a la función
+     * handlerRemoveUser con el ID del usuario como argumento.
+     */
+    const onRemoveUser = () => {
+        handlerRemoveUser(id);
+    }
     return (
         <tr key={id}>
             <td>{id}</td>
             <td>{username}</td>
             <td>{email}</td>
             <td>
-                <button type="button" className="btn btn-secondary btn-sm">update</button>
+                <button
+                    type="button"
+                    className="btn btn-secondary btn-sm"
+                >
+                    update
+                </button>
             </td>
             <td>
-                <button type="button" className="btn btn-danger btn-sm">remove</button>
+                <button
+                    type="button"
+                    className="btn btn-danger btn-sm"
+                    onClick={() => onRemoveUser(id)}
+                >
+                    remove
+                </button>
             </td>
         </tr>
     );
