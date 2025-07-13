@@ -26,23 +26,35 @@ const initialUserForm = {
     email: ''
 }
 
+
 /**
- * Hook para manejar la lista de usuarios.
+ * Hook personalizado para la gestión del estado de usuarios
+ * en la aplicación, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
  * 
- * Este hook devuelve un objeto con los siguientes valores:
- * - users: El estado actual de la lista de usuarios.
- * - userSelected: El usuario seleccionado actualmente.
- * - initialUserForm: El formulario de usuario vac o.
- * - handlerAddUser: Funci n para agregar un nuevo usuario.
- * - handlerRemoveUser: Funci n para eliminar un usuario.
- * - handlerUserSelectedForm: Funci n para actualizar el usuario
- *   seleccionado en el formulario de edici n.
- * @returns {Object} Un objeto con los valores mencionados.
+ * Retorna un objeto con las siguientes propiedades:
+ * - users: La lista de usuarios.
+ * - userSelected: El usuario seleccionado.
+ * - initialUserForm: El objeto que representa el estado
+ *   inicial del formulario de edición de usuarios.
+ * - visibleForm: Un booleano que indica si el formulario
+ *   de edición de usuarios está visible o no.
+ * - handlerAddUser: Función para agregar un nuevo usuario
+ *   a la lista de usuarios.
+ * - handlerRemoveUser: Función para eliminar un usuario
+ *   de la lista de usuarios.
+ * - handlerUserSelectedForm: Función para actualizar el estado
+ *   del usuario seleccionado en el formulario de edici n.
+ * - handlerOpenForm: Función para mostrar el formulario de edición
+ *   de usuarios.
+ * - handlerCloseForm: Función para ocultar el formulario de edición
+ *   de usuarios.
  */
 export const useUsers = () => {
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
 
     const [userSelected, setUserSelected] = useState(initialUserForm);
+
+    const [visibleForm, setVisibleForm] = useState(false);
 
     /**
    * Maneja el formulario de registro de usuarios.
@@ -52,16 +64,8 @@ export const useUsers = () => {
    * @param {Object} user - El usuario que se va a agregar.
    */
     const handlerAddUser = (user) => {
-
-        let type;
-
-        if (user.id === 0) {
-            type = 'addUser';
-        } else {
-            type = 'updateUser'
-        }
         dispatch({
-            type,
+            type: (user.id === 0) ? 'addUser' : 'updateUser',
             payload: user,
         });
 
@@ -70,6 +74,8 @@ export const useUsers = () => {
             text: (user.id === 0) ? "El usuario ha sido creado con éxito!" : "El usuario ha sido actualizado con éxito",
             icon: "success"
         });
+
+        handlerCloseForm();
     }
 
     /**
@@ -92,12 +98,12 @@ export const useUsers = () => {
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                
+
                 dispatch({
                     type: 'removeUser',
                     payload: id
                 });
-                
+
                 Swal.fire({
                     title: "Usuario eliminado!",
                     text: "El usuario ha sido eliminado con éxito!",
@@ -116,14 +122,38 @@ export const useUsers = () => {
      */
     const handlerUserSelectedForm = (user) => {
         setUserSelected({ ...user });
+        setVisibleForm(true);
     }
 
+    /**
+     * Abre el formulario de edición de usuarios.
+     * 
+     * Esta función se encarga de mostrar el formulario de edición
+     * de usuarios.
+     */
+    const handlerOpenForm = () => {
+        setVisibleForm(true);
+    }
+
+    /**
+     * Cierra el formulario de edición de usuarios.
+     * 
+     * Esta función se encarga de ocultar el formulario de edición
+     * de usuarios.
+     */
+    const handlerCloseForm = () => {
+        setVisibleForm(false);
+        setUserSelected(initialUserForm);
+    }
     return {
         users,
         userSelected,
         initialUserForm,
+        visibleForm,
         handlerAddUser,
         handlerRemoveUser,
-        handlerUserSelectedForm
+        handlerUserSelectedForm,
+        handlerOpenForm,
+        handlerCloseForm
     };
 }

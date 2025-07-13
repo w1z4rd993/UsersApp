@@ -1,5 +1,4 @@
 
-
 /**
  * Componente para mostrar una fila de usuario en una tabla.
  * Este componente representa una fila en el listado de usuarios,
@@ -13,7 +12,6 @@
  * 
  * @returns {JSX.Element} Un JSX.Element que representa una fila de usuario.
  */
-
 export const UserRow = ({ handlerUserSelectedForm, handlerRemoveUser, id, username, email }) => {
 
     return (
@@ -31,7 +29,7 @@ export const UserRow = ({ handlerUserSelectedForm, handlerRemoveUser, id, userna
                         email
                     })}
                 >
-                    update
+                    Update
                 </button>
             </td>
             <td>
@@ -40,7 +38,7 @@ export const UserRow = ({ handlerUserSelectedForm, handlerRemoveUser, id, userna
                     className="btn btn-danger btn-sm"
                     onClick={() => handlerRemoveUser(id)}
                 >
-                    remove
+                    Remove
                 </button>
             </td>
         </tr>
