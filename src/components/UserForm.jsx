@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 /**
  * Componente para el formulario de usuario.
@@ -53,7 +54,12 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm }) => {
         event.preventDefault();
 
         if (!username || (!password && id === 0) || !email) {
-            alert('Complete los campos del formulario');
+
+            Swal.fire({
+                title: "Error de validación",
+                text: "Debes completar todos los campos del formulario",
+                icon: "error"
+            });
             return;
         }
         handlerAddUser(userForm);
