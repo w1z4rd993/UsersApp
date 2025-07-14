@@ -4,10 +4,13 @@ import { loginReducer } from "./auth/pages/reducers/LoginReducer";
 import Swal from "sweetalert2";
 import { UsersPage } from "./pages/UsersPage";
 
-const initialLogin = {
+// Inicializa el estado de login en función del valor de la clave 'login'
+// en el sessionStorage. Si no hay valor, se asume que el usuario no está autenticado.
+const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
     isAuth: false,
     user: undefined
 }
+
 
 /**
  * Componente principal de la aplicación de usuarios.
@@ -39,7 +42,13 @@ export const UsersApp = () => {
             dispatch({
                 type: 'login',
                 payload: user
-            })
+            });
+            // Guarda el estado de login en el sessionStorage
+            sessionStorage.setItem('login', JSON.stringify({
+                isAuth: true,
+                user
+            }));
+
         } else {
             Swal.fire('Error Login', 'Username o password inválidos', 'error');
         }
