@@ -3,6 +3,7 @@ import { LoginPage } from "./auth/pages/LoginPage";
 import { loginReducer } from "./auth/pages/reducers/LoginReducer";
 import Swal from "sweetalert2";
 import { UsersPage } from "./pages/UsersPage";
+import { Navbar } from "./components/layout/Navbar";
 
 // Inicializa el estado de login en función del valor de la clave 'login'
 // en el sessionStorage. Si no hay valor, se asume que el usuario no está autenticado.
@@ -10,7 +11,6 @@ const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
     isAuth: false,
     user: undefined
 }
-
 
 /**
  * Componente principal de la aplicación de usuarios.
@@ -54,11 +54,23 @@ export const UsersApp = () => {
         }
 
     }
+
+    const handlerLogout = () => {
+        dispatch({
+            type: 'logout'
+        });
+        sessionStorage.removeItem('login');
+    }
     return (
         <>
             {
                 login.isAuth
-                    ? <UsersPage />
+                    ? (
+                        <>
+                            <Navbar login={login} handlerLogout={handlerLogout} />
+                            <UsersPage />
+                        </>
+                    )
                     : <LoginPage handlerLogin={handlerLogin} />
             }
         </>
