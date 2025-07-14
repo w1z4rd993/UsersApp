@@ -1,6 +1,7 @@
 import { useReducer, useState } from "react";
 import { usersReducer } from "../reducers/usersReducer";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 /*
  * Objeto que representa el estado inicial de la lista de usuarios.
@@ -51,10 +52,9 @@ const initialUserForm = {
  */
 export const useUsers = () => {
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
-
     const [userSelected, setUserSelected] = useState(initialUserForm);
-
     const [visibleForm, setVisibleForm] = useState(false);
+    const navigate = useNavigate();
 
     /**
    * Maneja el formulario de registro de usuarios.
@@ -74,8 +74,8 @@ export const useUsers = () => {
             text: (user.id === 0) ? "El usuario ha sido creado con éxito!" : "El usuario ha sido actualizado con éxito",
             icon: "success"
         });
-
         handlerCloseForm();
+        navigate("/users");
     }
 
     /**

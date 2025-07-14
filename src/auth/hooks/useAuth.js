@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import { loginReducer } from "../reducers/loginReducer";
 import Swal from "sweetalert2";
 import { loginUser } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 // Inicializa el estado de login en función del valor de la clave 'login'
 // en el sessionStorage. Si no hay valor, se asume que el usuario no está autenticado.
@@ -23,6 +24,8 @@ const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
 export const useAuth = () => {
 
     const [login, dispatch] = useReducer(loginReducer, initialLogin);
+
+    const navigate = useNavigate();
 
 
     /**
@@ -47,6 +50,7 @@ export const useAuth = () => {
                 isAuth: true,
                 user
             }));
+            navigate("/users");
         } else {
             Swal.fire('Error Login', 'Username o password inválidos', 'error');
         }
