@@ -1,19 +1,70 @@
+import { useState } from "react";
+import Swal from "sweetalert2";
+
+const initialLoginForm = { username: '', password: '' }
+
 /**
- * Componente que representa la página de login.
+ * Componente de página de inicio de sesión.
  * 
- * Este componente muestra una ventana modal con un formulario para
- * que el usuario ingrese su nombre de usuario y contrase a. El
- * formulario tiene dos campos de entrada:
+ * Este componente representa una página de inicio de sesión, donde los usuarios
+ * pueden ingresar su nombre de usuario y contraseña para autenticarse.
+ * Proporciona campos de entrada para el nombre de usuario y la contraseña,
+ * así como un botón para enviar el formulario.
+ * Si las credenciales son correctas, se muestra un mensaje de éxito,
+ * en caso contrario, se muestra un mensaje de error.
  * 
- * - `username`: El nombre de usuario del usuario.
- * - `password`: La contraseña del usuario.
- * 
- * El formulario tiene un botón de envío que se encarga de
- * enviar la información del formulario al servidor.
- * 
- * @returns {JSX.Element} Un JSX.Element que representa la página de login.
+ * @returns {JSX.Element} Un JSX.Element que representa la página de inicio de sesión.
  */
+
 export const LoginPage = () => {
+
+    const [loginForm, setLoginForm] = useState(initialLoginForm);
+
+    const { username, password } = loginForm;
+
+    /**
+     * Maneja el cambio de entrada en los campos del formulario de login.
+     * 
+     * Actualiza el estado `loginForm` con el nuevo valor del campo 
+     * correspondiente al nombre del campo modificado.
+     * @param {Object} target - El objeto de evento del input modificado.
+     * @param {string} target.name - El nombre del campo de entrada.
+     * @param {string} target.value - El nuevo valor del campo de entrada.
+     */
+    const onInputChange = ({ target }) => {
+        const { name, value } = target;
+
+        setLoginForm({
+            ...loginForm,
+            [name]: value,
+        })
+    }
+
+    /**
+     * Maneja el submit del formulario de login.
+     * 
+     * Valida que los campos del formulario est n completos y
+     * verifica que el usuario y password sean correctos.
+     * Si el usuario y password son correctos, notifica al usuario
+     * con un mensaje de  xito y resetea el formulario.
+     * De lo contrario, notifica al usuario con un mensaje de error.
+     * @param {Object} event - El objeto de evento del formulario.
+     */
+    const onSubmit = (event) => {
+        event.preventDefault();
+        if (!username || !password) {
+            Swal.fire('Error de validación', 'Username y password requeridos', 'error');
+        }
+
+        if (username === 'admin' && password === '12345') {
+            
+        } else {
+            Swal.fire('Error Login', 'Username o password inválidos', 'error');
+        }
+
+        setLoginForm(initialLoginForm);
+    }
+
     return (
         <div className="modal" style={{ display: 'block' }} tabIndex="-1">
             <div className="modal-dialog">
@@ -21,19 +72,22 @@ export const LoginPage = () => {
                     <div className="modal-header">
                         <h5 className="modal-title">Login page</h5>
                     </div>
-                    <form>
+                    <form onSubmit={onSubmit}>
                         <div className="modal-body">
                             <input
                                 className="form-control my-3 w-75"
                                 placeholder="Username"
                                 name="username"
+                                value={username}
+                                onChange={onInputChange}
                             />
-
                             <input
                                 className="form-control my-3 w-75"
                                 placeholder="Password"
                                 name="password"
                                 type="password"
+                                value={password}
+                                onChange={onInputChange}
                             />
                         </div>
                         <div className="modal-footer">
@@ -42,7 +96,6 @@ export const LoginPage = () => {
                                 type="submit">
                                 Login
                             </button>
-
                         </div>
                     </form>
                 </div>
