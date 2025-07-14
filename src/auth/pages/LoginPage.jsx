@@ -16,7 +16,7 @@ const initialLoginForm = { username: '', password: '' }
  * @returns {JSX.Element} Un JSX.Element que representa la página de inicio de sesión.
  */
 
-export const LoginPage = () => {
+export const LoginPage = ({ handlerLogin }) => {
 
     const [loginForm, setLoginForm] = useState(initialLoginForm);
 
@@ -55,13 +55,7 @@ export const LoginPage = () => {
         if (!username || !password) {
             Swal.fire('Error de validación', 'Username y password requeridos', 'error');
         }
-
-        if (username === 'admin' && password === '12345') {
-            
-        } else {
-            Swal.fire('Error Login', 'Username o password inválidos', 'error');
-        }
-
+        handlerLogin({ username, password });
         setLoginForm(initialLoginForm);
     }
 
