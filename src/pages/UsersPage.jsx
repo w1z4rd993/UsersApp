@@ -1,5 +1,4 @@
 import { UsersList } from "../components/UsersList"
-import { useUsers } from "../hooks/useUsers"
 import { UserModalForm } from "../components/UserModalForm"
 
 
@@ -14,17 +13,16 @@ import { UserModalForm } from "../components/UserModalForm"
  * @returns {JSX.Element} Un JSX.Element que representa la p gina
  * de la lista de usuarios.
  */
-export const UsersPage = () => {
-    const { users,
-        userSelected,
-        initialUserForm,
-        handlerAddUser,
-        handlerRemoveUser,
-        handlerUserSelectedForm,
-        visibleForm,
-        handlerOpenForm,
-        handlerCloseForm
-    } = useUsers();
+export const UsersPage = ({ users,
+    userSelected,
+    initialUserForm,
+    handlerAddUser,
+    handlerRemoveUser,
+    handlerUserSelectedForm,
+    visibleForm,
+    handlerOpenForm,
+    handlerCloseForm
+}) => {
 
     return (
         <>
