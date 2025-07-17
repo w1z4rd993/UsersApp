@@ -1,9 +1,9 @@
 /**
- * Reducer que maneja el estado de autenticaci n del usuario.
+ * Reducer que maneja el estado de autenticación del usuario.
  * 
- * El estado de autenticaci n se representa como un objeto con dos propiedades:
+ * El estado de autenticación se representa como un objeto con dos propiedades:
  * - isAuth: booleano que indica si el usuario est  autenticado o no.
- * - user: objeto con los datos del usuario autenticado (o undefined si no est  autenticado).
+ * - user: objeto con los datos del usuario autenticado (o undefined si no está autenticado).
  * 
  * El reducer maneja dos tipos de acciones:
  * - 'login': actualiza el estado con los datos del usuario autenticado.

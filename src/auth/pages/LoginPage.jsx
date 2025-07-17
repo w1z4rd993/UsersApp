@@ -15,7 +15,6 @@ const initialLoginForm = { username: '', password: '' }
  * 
  * @returns {JSX.Element} Un JSX.Element que representa la página de inicio de sesión.
  */
-
 export const LoginPage = ({ handlerLogin }) => {
 
     const [loginForm, setLoginForm] = useState(initialLoginForm);
@@ -46,7 +45,7 @@ export const LoginPage = ({ handlerLogin }) => {
      * Valida que los campos del formulario est n completos y
      * verifica que el usuario y password sean correctos.
      * Si el usuario y password son correctos, notifica al usuario
-     * con un mensaje de  xito y resetea el formulario.
+     * con un mensaje de éxito y resetea el formulario.
      * De lo contrario, notifica al usuario con un mensaje de error.
      * @param {Object} event - El objeto de evento del formulario.
      */

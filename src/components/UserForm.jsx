@@ -45,7 +45,7 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
      * Maneja el submit del formulario de usuario.
      * 
      * Valida que los campos del formulario est n completos y
-     * llama a la funci n handlerAddUser() con el usuario
+     * llama a la función handlerAddUser() con el usuario
      * construido en userForm. Luego, resetea el estado
      * userForm con el valor de initialUserForm.
      * @param {Object} event - El objeto de evento del formulario.
@@ -53,6 +53,7 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
     const onSubmit = (event) => {
         event.preventDefault();
 
+        // Validar que los campos del formulario están completos
         if (!username || (!password && id === 0) || !email) {
 
             Swal.fire({
@@ -62,6 +63,17 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
             });
             return;
         }
+
+        // Validar que el email tenga al menos un '@'
+        if (!email.includes('@')) {
+            Swal.fire({
+                title: "Error de validación email",
+                text: "El email debe ser válido, incluir un @!",
+                icon: "error"
+            });
+            return;
+        }
+
         handlerAddUser(userForm);
         setUserForm(initialUserForm);
     }

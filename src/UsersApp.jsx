@@ -1,7 +1,7 @@
 import { LoginPage } from "./auth/pages/LoginPage";
 import { useAuth } from "./auth/hooks/useAuth";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { UserRoutes } from "./routes/userRoutes";
+import { UserRoutes } from "./routes/UserRoutes";
 
 /**
  * Componente principal de la aplicación de usuarios.
