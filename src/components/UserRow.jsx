@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom";
 /**
  * Componente para mostrar una fila de usuario en una tabla.
  * Este componente representa una fila en el listado de usuarios,
@@ -31,6 +31,11 @@ export const UserRow = ({ handlerUserSelectedForm, handlerRemoveUser, id, userna
                 >
                     Update
                 </button>
+            </td>
+            <td>
+                <NavLink className={'btn btn-secondary btn-sm'}
+                    to={'/users/edit/' + id}> update route
+                </NavLink>
             </td>
             <td>
                 <button
