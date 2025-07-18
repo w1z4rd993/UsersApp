@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserForm } from "../components/UserForm";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 /**
  * Componente de página de registro de usuarios.
@@ -14,7 +15,9 @@ import { useParams } from "react-router-dom";
  * 
  * @returns {JSX.Element} Un JSX.Element que representa la p gina de registro de usuarios.
  */
-export const RegisterPage = ({ users = [], handlerAddUser, initialUserForm }) => {
+export const RegisterPage = () => {
+
+    const { users = [], initialUserForm } = useContext(UserContext);
 
     const [userSelected, setUserSelected] = useState(initialUserForm);
 
@@ -28,17 +31,12 @@ export const RegisterPage = ({ users = [], handlerAddUser, initialUserForm }) =>
         }
     }, [id]);
 
-
     return (
         <div className="container my-4">
             <h4>{userSelected.id > 0 ? 'Editar' : 'Registrar'} Usuario</h4>
             <div className="row">
                 <div className="col">
-                    <UserForm
-                        userSelected={userSelected}
-                        handlerAddUser={handlerAddUser}
-                        initialUserForm={initialUserForm}
-                    />
+                    <UserForm userSelected={userSelected} />
                 </div>
             </div>
         </div>

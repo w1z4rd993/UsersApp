@@ -1,23 +1,22 @@
+import { useContext } from "react";
 import { UserForm } from "./UserForm";
+import { UserContext } from "../context/UserContext";
+
 
 /**
- * Componente que representa un formulario para crear o editar un usuario.
+ * Componente modal para crear o editar un usuario.
  * 
- * Muestra un formulario para crear o editar un usuario, dependiendo
- * del valor de userSelected.id. El formulario se muestra en una ventana
- * modal.
- * @param {Object} props - Las propiedades del componente.
- * @param {Object} props.initialUserForm - El objeto que representa el estado
- *   inicial del formulario de edición de usuarios.
- * @param {Function} props.handlerAddUser - La función que se encarga de
- *   agregar o editar un usuario en la lista de usuarios.
- * @param {Object} props.userSelected - El usuario seleccionado.
- * @param {Function} props.handlerCloseForm - La función que se encarga de
- *   cerrar el formulario de edición de usuarios.
- * @returns {JSX.Element} Un JSX.Element que representa el formulario de edición
- * de usuarios en una ventana modal.
+ * Este componente utiliza el contexto `UserContext` para obtener
+ * el usuario seleccionado y la funci n para cerrar el formulario.
+ * Muestra un formulario para crear o editar el usuario, dependiendo
+ * del valor de `userSelected.id`. Si es mayor que 0, es una edición,
+ * en caso contrario es una creación.
+ * 
+ * @returns {JSX.Element} Un JSX.Element que representa el formulario
+ *   modal para crear o editar un usuario.
  */
-export const UserModalForm = ({ initialUserForm, handlerAddUser, userSelected, handlerCloseForm }) => {
+export const UserModalForm = () => {
+    const { userSelected, handlerCloseForm } = useContext(UserContext);
     return (
         <div className="abrir-modal animacion fadeIn">
             <div className="modal" style={{ display: "block" }} tabIndex="-1">
@@ -30,8 +29,6 @@ export const UserModalForm = ({ initialUserForm, handlerAddUser, userSelected, h
                         </div>
                         <div className="modal-body">
                             <UserForm
-                                initialUserForm={initialUserForm}
-                                handlerAddUser={handlerAddUser}
                                 userSelected={userSelected}
                                 handlerCloseForm={handlerCloseForm}
                             />

@@ -1,5 +1,7 @@
 import { UsersList } from "../components/UsersList"
 import { UserModalForm } from "../components/UserModalForm"
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 
 /**
@@ -10,29 +12,22 @@ import { UserModalForm } from "../components/UserModalForm"
  * crear o editar un usuario. Si el usuario hace clic en el botón
  * "Eliminar" al lado del usuario, se elimina el usuario.
  * 
- * @returns {JSX.Element} Un JSX.Element que representa la p gina
+ * @returns {JSX.Element} Un JSX.Element que representa la página
  * de la lista de usuarios.
  */
-export const UsersPage = ({ users,
-    userSelected,
-    initialUserForm,
-    handlerAddUser,
-    handlerRemoveUser,
-    handlerUserSelectedForm,
-    visibleForm,
-    handlerOpenForm,
-    handlerCloseForm
-}) => {
+export const UsersPage = () => {
 
+    const {
+        users,
+        visibleForm,
+        handlerRemoveUser,
+        handlerUserSelectedForm,
+        handlerOpenForm,
+    } = useContext(UserContext);
     return (
         <>
             {!visibleForm ||
-                <UserModalForm
-                    initialUserForm={initialUserForm}
-                    handlerAddUser={handlerAddUser}
-                    userSelected={userSelected}
-                    handlerCloseForm={handlerCloseForm}
-                />}
+                <UserModalForm />}
             <div className="container my-4">
                 <h2>Users App</h2>
                 <div className="row">
