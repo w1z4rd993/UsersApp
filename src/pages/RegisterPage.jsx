@@ -11,7 +11,7 @@ import { UserContext } from "../context/UserContext";
  * - users: La lista de usuarios.
  * - handlerAddUser: La funci n que se encarga de agregar o editar un usuario en la lista de usuarios.
  * - initialUserForm: El objeto que representa el estado
- *   inicial del formulario de edici n de usuarios.
+ *   inicial del formulario de edición de usuarios.
  * 
  * @returns {JSX.Element} Un JSX.Element que representa la p gina de registro de usuarios.
  */
