@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { UserRow } from "./UserRow";
+import { UserContext } from "../context/UserContext";
 
 /**
  * Componente para mostrar un listado de usuarios.
@@ -7,7 +9,9 @@ import { UserRow } from "./UserRow";
  * 
  * @returns {JSX.Element} Un JSX.Element que representa el componente.
  */
-export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = [] }) => {
+export const UsersList = () => {
+
+    const { users } = useContext(UserContext);
     return (
         <table className="table table-hover table-striped">
             <thead>
@@ -23,15 +27,7 @@ export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = 
             <tbody>
                 {
                     users.map(({ id, username, email }) => (
-                        <UserRow
-                            key={id}
-                            id={id}
-                            username={username}
-                            email={email}
-                            handlerRemoveUser={handlerRemoveUser}
-                            handlerUserSelectedForm={handlerUserSelectedForm}
-
-                        />
+                        <UserRow key={id} id={id} username={username} email={email} />
                     ))
                 }
             </tbody>

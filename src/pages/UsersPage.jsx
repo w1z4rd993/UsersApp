@@ -17,13 +17,12 @@ import { UserContext } from "../context/UserContext";
  */
 export const UsersPage = () => {
 
-    const {
-        users,
-        visibleForm,
-        handlerRemoveUser,
-        handlerUserSelectedForm,
-        handlerOpenForm,
-    } = useContext(UserContext);
+    /* 
+    Obtengo el contexto de usuarios, que contiene la lista de usuarios,
+    el estado de visibilidad del formulario y la función para abrir el formulario.
+    */
+    const { users, visibleForm, handlerOpenForm, } = useContext(UserContext);
+
     return (
         <>
             {!visibleForm ||
@@ -41,11 +40,7 @@ export const UsersPage = () => {
 
                         {users.length === 0
                             ? <div className="alert alert-warning">No hay usuarios en el sistema</div>
-                            : <UsersList
-                                users={users}
-                                handlerUserSelectedForm={handlerUserSelectedForm}
-                                handlerRemoveUser={handlerRemoveUser}
-                            />}
+                            : <UsersList />}
                     </div>
                 </div>
             </div>

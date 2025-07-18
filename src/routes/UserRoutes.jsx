@@ -2,14 +2,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { UsersPage } from "../pages/UsersPage";
 import { Navbar } from "../components/layout/Navbar";
 import { RegisterPage } from "../pages/RegisterPage";
-import { useUsers } from "../hooks/useUsers";
 import { UserProvider } from "../context/UserProvider";
+
 
 /**
  * Componente principal de las rutas de la aplicación de usuarios.
  * 
  * Este componente se encarga de renderizar la barra de navegación
- * y las rutas para la p gina de inicio y la página de usuarios.
+ * y las rutas para la página de inicio y la página de usuarios.
  * 
  * @param {{ login: Object, handlerLogout: Function }} props - Las propiedades
  *   del componente:
@@ -19,32 +19,15 @@ import { UserProvider } from "../context/UserProvider";
  *   aplicación de usuarios.
  */
 export const UserRoutes = ({ login, handlerLogout }) => {
-
     return (
         <>
             <UserProvider>
                 <Navbar login={login} handlerLogout={handlerLogout} />
-
                 <Routes>
-
-                    <Route path="users" element={<UsersPage
-                        users={users}
-                        userSelected={userSelected}
-                        initialUserForm={initialUserForm}
-                        handlerAddUser={handlerAddUser}
-                        handlerRemoveUser={handlerRemoveUser}
-                        handlerUserSelectedForm={handlerUserSelectedForm}
-                        visibleForm={visibleForm}
-                        handlerOpenForm={handlerOpenForm}
-                        handlerCloseForm={handlerCloseForm}
-                    />} />
-
+                    <Route path="users" element={<UsersPage />} />
                     <Route path="users/register" element={<RegisterPage />} />
-
                     <Route path="users/edit/:id" element={<RegisterPage />} />
-
                     <Route path="/" element={<Navigate to={"/users"} />} />
-
                 </Routes>
             </UserProvider>
         </>
