@@ -1,18 +1,23 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 /**
- * Componente de barra de navegación.
+ * Componente de barra de navegación para la aplicación de usuarios.
  * 
- * Este componente muestra una barra de navegación con un enlace a la
- * página de usuarios y un botón para cerrar sesión.
+ * Este componente se encarga de renderizar la barra de navegación
+ * principal de la aplicación, con dos secciones:
+ * - La sección izquierda, que contiene links para navegar entre
+ *   las páginas de la aplicación.
+ * - La sección derecha, que contiene el nombre del usuario
+ *   autenticado y un botón para cerrar la sesión.
  * 
- * @param {{ login: Object, handlerLogout: Function }} props - El objeto con
- *   las propiedades:
- *   - login: El estado de autenticación del usuario.
- *   - handlerLogout: Función para manejar el cierre de sesión.
- * @returns {JSX.Element} Un JSX.Element que representa la barra de navegación.
+ * @returns {JSX.Element} Un JSX.Element que representa la barra de
+ *   navegación principal de la aplicación.
  */
-export const Navbar = ({ login, handlerLogout }) => {
+export const Navbar = () => {
+
+    const { login, handlerLogout } = useContext(AuthContext);
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">

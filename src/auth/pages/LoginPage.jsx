@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthContext";
 
 const initialLoginForm = { username: '', password: '' }
 
+
 /**
- * Componente de página de inicio de sesión.
+ * Componente para la página de login.
  * 
- * Este componente representa una página de inicio de sesión, donde los usuarios
- * pueden ingresar su nombre de usuario y contraseña para autenticarse.
- * Proporciona campos de entrada para el nombre de usuario y la contraseña,
- * así como un botón para enviar el formulario.
- * Si las credenciales son correctas, se muestra un mensaje de éxito,
- * en caso contrario, se muestra un mensaje de error.
+ * Este componente representa la p gina de login y
+ * se encarga de manejar el estado de autenticación del usuario.
  * 
- * @returns {JSX.Element} Un JSX.Element que representa la página de inicio de sesión.
+ * @returns {JSX.Element} Un JSX.Element que representa la página de login.
  */
-export const LoginPage = ({ handlerLogin }) => {
+export const LoginPage = () => {
+
+    const { handlerLogin } = useContext(AuthContext);
 
     const [loginForm, setLoginForm] = useState(initialLoginForm);
 

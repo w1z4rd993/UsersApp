@@ -9,20 +9,16 @@ import { UserProvider } from "../context/UserProvider";
  * Componente principal de las rutas de la aplicación de usuarios.
  * 
  * Este componente se encarga de renderizar la barra de navegación
- * y las rutas para la página de inicio y la página de usuarios.
+ * y las rutas para la p gina de inicio y la página de usuarios.
  * 
- * @param {{ login: Object, handlerLogout: Function }} props - Las propiedades
- *   del componente:
- *   - login: El estado de autenticación del usuario.
- *   - handlerLogout: Función para manejar el cierre de sesión.
  * @returns {JSX.Element} Un JSX.Element que representa las rutas de la
  *   aplicación de usuarios.
  */
-export const UserRoutes = ({ login, handlerLogout }) => {
+export const UserRoutes = () => {
     return (
         <>
             <UserProvider>
-                <Navbar login={login} handlerLogout={handlerLogout} />
+                <Navbar />
                 <Routes>
                     <Route path="users" element={<UsersPage />} />
                     <Route path="users/register" element={<RegisterPage />} />

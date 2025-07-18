@@ -6,14 +6,7 @@ import { useNavigate } from "react-router-dom";
 /*
  * Objeto que representa el estado inicial de la lista de usuarios.
  */
-const initialUsers = [
-    {
-        id: 1,
-        username: 'isaias',
-        password: '123456',
-        email: 'isaias123@gmail.com'
-    }
-]
+const initialUsers = [];
 
 /* 
  * Valores por defecto del useState para userForm.

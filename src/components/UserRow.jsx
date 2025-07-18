@@ -37,11 +37,6 @@ export const UserRow = ({ id, username, email }) => {
                 </button>
             </td>
             <td>
-                <NavLink className={'btn btn-secondary btn-sm'}
-                    to={'/users/edit/' + id}> update route
-                </NavLink>
-            </td>
-            <td>
                 <button
                     type="button"
                     className="btn btn-danger btn-sm"
