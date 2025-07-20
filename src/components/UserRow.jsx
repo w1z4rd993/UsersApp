@@ -1,18 +1,11 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 /**
  * Componente para mostrar una fila de usuario en una tabla.
  * 
- * Este componente muestra la información del usuario y proporciona
- * opciones para actualizar o eliminar el usuario.
- * 
- * @param {Object} props - Las propiedades del componente.
- * @param {number} props.id - El ID del usuario.
- * @param {string} props.username - El nombre de usuario.
- * @param {string} props.email - El correo electrónico del usuario.
- * @returns {JSX.Element} Un JSX.Element que representa una fila de usuario.
+ * @param {{id: number, username: string, email: string}} props 
+ * @returns {JSX.Element}
  */
 export const UserRow = ({ id, username, email }) => {
 

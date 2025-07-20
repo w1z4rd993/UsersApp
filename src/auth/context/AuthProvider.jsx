@@ -2,9 +2,9 @@ import { AuthContext } from "./AuthContext";
 import { useAuth } from "../hooks/useAuth";
 
 /**
- * Proveedor de contexto de autenticaci n para la aplicaci n.
+ * Proveedor de contexto de autenticación para la aplicación.
  * 
- * Utiliza el hook `useAuth` para obtener y manejar el estado de autenticaci n del usuario
+ * Utiliza el hook `useAuth` para obtener y manejar el estado de autenticación del usuario
  * y las funciones para manejar el login y logout del usuario. Luego, provee el contexto `AuthContext`
  * con los valores y funciones necesarias para gestionar la autenticación en la aplicación.
  * 

@@ -7,10 +7,7 @@ const initialLoginForm = { username: '', password: '' }
 
 /**
  * Componente para la página de login.
- * 
- * Este componente representa la p gina de login y
- * se encarga de manejar el estado de autenticación del usuario.
- * 
+ * Se encarga de manejar el estado de autenticación del usuario.
  * @returns {JSX.Element} Un JSX.Element que representa la página de login.
  */
 export const LoginPage = () => {
@@ -21,15 +18,7 @@ export const LoginPage = () => {
 
     const { username, password } = loginForm;
 
-    /**
-     * Maneja el cambio de entrada en los campos del formulario de login.
-     * 
-     * Actualiza el estado `loginForm` con el nuevo valor del campo 
-     * correspondiente al nombre del campo modificado.
-     * @param {Object} target - El objeto de evento del input modificado.
-     * @param {string} target.name - El nombre del campo de entrada.
-     * @param {string} target.value - El nuevo valor del campo de entrada.
-     */
+    // Actualiza el estado del formulario de login con el nuevo valor del campo modificado
     const onInputChange = ({ target }) => {
         const { name, value } = target;
 
@@ -40,14 +29,11 @@ export const LoginPage = () => {
     }
 
     /**
-     * Maneja el submit del formulario de login.
+     * Procesa el envío del formulario de login.
      * 
-     * Valida que los campos del formulario est n completos y
-     * verifica que el usuario y password sean correctos.
-     * Si el usuario y password son correctos, notifica al usuario
-     * con un mensaje de éxito y resetea el formulario.
-     * De lo contrario, notifica al usuario con un mensaje de error.
-     * @param {Object} event - El objeto de evento del formulario.
+     * Verifica que los campos estén completos y correctos.
+     * Muestra un mensaje de éxito o error según el resultado.
+     * @param {Object} event - Evento de envío del formulario.
      */
     const onSubmit = (event) => {
         event.preventDefault();

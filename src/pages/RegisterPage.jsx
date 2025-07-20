@@ -4,16 +4,9 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 /**
- * Componente de página de registro de usuarios.
+ * Página de registro de usuarios.
  * 
- * Este componente representa una p gina para registrar o editar un usuario.
- * Recibe las siguientes propiedades:
- * - users: La lista de usuarios.
- * - handlerAddUser: La funci n que se encarga de agregar o editar un usuario en la lista de usuarios.
- * - initialUserForm: El objeto que representa el estado
- *   inicial del formulario de edición de usuarios.
- * 
- * @returns {JSX.Element} Un JSX.Element que representa la p gina de registro de usuarios.
+ * @returns {JSX.Element} Un JSX.Element que representa la página de registro de usuarios.
  */
 export const RegisterPage = () => {
 

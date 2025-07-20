@@ -3,17 +3,8 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../auth/context/AuthContext";
 
 /**
- * Componente de barra de navegación para la aplicación de usuarios.
- * 
- * Este componente se encarga de renderizar la barra de navegación
- * principal de la aplicación, con dos secciones:
- * - La sección izquierda, que contiene links para navegar entre
- *   las páginas de la aplicación.
- * - La sección derecha, que contiene el nombre del usuario
- *   autenticado y un botón para cerrar la sesión.
- * 
- * @returns {JSX.Element} Un JSX.Element que representa la barra de
- *   navegación principal de la aplicación.
+ * Barra de navegación principal de la aplicación.
+ * @returns {JSX.Element}
  */
 export const Navbar = () => {
 

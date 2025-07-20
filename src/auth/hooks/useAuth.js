@@ -13,13 +13,7 @@ const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
 
 /**
  * Hook para manejar el estado de autenticación del usuario.
- * 
- * Retorna un objeto con las siguientes propiedades:
- * - login: El estado de autenticación del usuario.
- * - handlerLogin: Función para manejar el login del usuario.
- * - handlerLogout: Función para manejar el logout del usuario.
- * 
- * @returns {{ login: Object, handlerLogin: Function, handlerLogout: Function }}
+ * @returns {{ login, handlerLogin, handlerLogout }}
  */
 export const useAuth = () => {
 
@@ -30,10 +24,7 @@ export const useAuth = () => {
 
     /**
      * Maneja el login del usuario.
-     * 
-     * Verifica si el usuario y password son correctos, y
-     * si lo son, cambia el estado de login a true.
-     * Si no lo son, muestra un mensaje de error.
+     * Verifica si el usuario y password son correctos.
      * @param {{ username: string, password: string }} data - El objeto con
      *   los datos del usuario y password.
      */

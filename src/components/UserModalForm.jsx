@@ -4,16 +4,8 @@ import { UserContext } from "../context/UserContext";
 
 
 /**
- * Componente modal para crear o editar un usuario.
- * 
- * Este componente utiliza el contexto `UserContext` para obtener
- * el usuario seleccionado y la funci n para cerrar el formulario.
- * Muestra un formulario para crear o editar el usuario, dependiendo
- * del valor de `userSelected.id`. Si es mayor que 0, es una edición,
- * en caso contrario es una creación.
- * 
- * @returns {JSX.Element} Un JSX.Element que representa el formulario
- *   modal para crear o editar un usuario.
+ * Formulario modal para crear o editar un usuario.
+ * @returns {JSX.Element} 
  */
 export const UserModalForm = () => {
     const { userSelected, handlerCloseForm } = useContext(UserContext);

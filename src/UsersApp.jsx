@@ -7,14 +7,10 @@ import { AuthContext } from "./auth/context/AuthContext";
 
 /**
  * Componente principal de la aplicación de usuarios.
-
- * Este componente se encarga de gestionar las rutas de la aplicación
- * basadas en el estado de autenticación del usuario. Si el usuario
- * está autenticado, se mostrarán las rutas de usuario. Si no lo está,
- * se redirigirá al usuario a la página de inicio de sesión.
- * 
+ * Muestra las rutas de usuario si el usuario está autenticado,
+ * o la página de inicio de sesión si no lo está.
  * @returns {JSX.Element} Un JSX.Element que representa las rutas de
- * la aplicación de acuerdo al estado de autenticación.
+ * la aplicación.
  */
 export const UsersApp = () => {
 

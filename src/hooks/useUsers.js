@@ -4,16 +4,10 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { findAll, remove, save, update } from "../services/userService";
 
-/*
- * Objeto que representa el estado inicial de la lista de usuarios.
- */
+// Objeto que representa el estado inicial de la lista de usuarios.
 const initialUsers = [];
 
-/* 
- * Valores por defecto del useState para userForm.
- * Estos valores son los que se utilizan cuando se crea un nuevo
- * usuario o se edita uno existente. 
-*/
+// Valores iniciales para userForm.
 const initialUserForm = {
     id: 0,
     username: '',
@@ -23,26 +17,8 @@ const initialUserForm = {
 
 
 /**
- * Hook personalizado para la gestión del estado de usuarios
- * en la aplicación, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
- * 
- * Retorna un objeto con las siguientes propiedades:
- * - users: La lista de usuarios.
- * - userSelected: El usuario seleccionado.
- * - initialUserForm: El objeto que representa el estado
- *   inicial del formulario de edición de usuarios.
- * - visibleForm: Un booleano que indica si el formulario
- *   de edición de usuarios está visible o no.
- * - handlerAddUser: Función para agregar un nuevo usuario
- *   a la lista de usuarios.
- * - handlerRemoveUser: Función para eliminar un usuario
- *   de la lista de usuarios.
- * - handlerUserSelectedForm: Función para actualizar el estado
- *   del usuario seleccionado en el formulario de edición.
- * - handlerOpenForm: Función para mostrar el formulario de edición
- *   de usuarios.
- * - handlerCloseForm: Función para ocultar el formulario de edición
- *   de usuarios.
+ * Hook para la gestión del estado de usuarios en la aplicación.
+ * Retorna un objeto con las propiedades para operaciones CRUD.
  */
 export const useUsers = () => {
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
@@ -51,15 +27,7 @@ export const useUsers = () => {
     const navigate = useNavigate();
 
     /**
-     * Realiza una petición GET a la API para obtener la lista de todos los usuarios.
-     * 
-     * Esta función utiliza el servicio findAll() para obtener la lista de usuarios
-     * y actualiza el estado de la lista de usuarios en el reducer.
-     * 
-     * @returns {Promise<void>} Una promesa que se resuelve cuando se completa
-     * la petición.
-     * 
-     * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
+     * Obtiene la lista de usuarios y actualiza el estado.
      */
     const getUsers = async () => {
         const result = await findAll();
@@ -70,12 +38,9 @@ export const useUsers = () => {
     }
 
     /**
-   * Maneja el formulario de registro de usuarios.
-   * 
-   * Esta función se encarga de agregar un nuevo usuario
-   * a la lista de usuarios.
-   * @param {Object} user - El usuario que se va a agregar.
-   */
+     * Agrega un nuevo usuario a la lista.
+     * @param {Object} user - Usuario a agregar.
+     */
     const handlerAddUser = async (user) => {
 
         let response;
@@ -101,10 +66,7 @@ export const useUsers = () => {
     }
 
     /**
-     * Maneja el eliminar un usuario de la lista.
-     * 
-     * Esta función se encarga de eliminar un usuario
-     * de la lista de usuarios.
+     * Elimina un usuario de la lista.
      * @param {number} id - El ID del usuario que se va a eliminar.
      */
     const handlerRemoveUser = (id) => {
@@ -137,11 +99,8 @@ export const useUsers = () => {
     }
 
     /**
-     * Maneja el formulario de edición de usuarios.
-     * 
-     * Esta función se encarga de actualizar el estado
-     * del usuario seleccionado en el formulario de edici n.
-     * @param {Object} user - El usuario que se va a editar.
+     * Edita un usuario en la lista.
+     * @param {Object} user - Usuario a editar.
      */
     const handlerUserSelectedForm = (user) => {
         setUserSelected({ ...user });
@@ -149,20 +108,14 @@ export const useUsers = () => {
     }
 
     /**
-     * Abre el formulario de edición de usuarios.
-     * 
-     * Esta función se encarga de mostrar el formulario de edición
-     * de usuarios.
+     * Abre el formulario de edición de usuarios
      */
     const handlerOpenForm = () => {
         setVisibleForm(true);
     }
 
     /**
-     * Cierra el formulario de edición de usuarios.
-     * 
-     * Esta función se encarga de ocultar el formulario de edición
-     * de usuarios.
+     * Cierra el formulario de edición de usuarios
      */
     const handlerCloseForm = () => {
         setVisibleForm(false);

@@ -3,12 +3,8 @@ import axios from "axios"
 const BASE_URL = 'http://localhost:8080/users'
 
 /**
- * Realiza una petición GET a la API para obtener la lista de todos los usuarios.
- * 
- * @returns {Promise<AxiosResponse<any>>} Una promesa que se resuelve con el objeto
- * response de axios que contiene los usuarios.
- * 
- * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
+ * Obtiene la lista de usuarios.
+ * @returns {Promise<AxiosResponse<any>>}
  */
 export const findAll = async () => {
 
@@ -25,15 +21,9 @@ export const findAll = async () => {
 /**
  * Guarda un nuevo usuario en la base de datos.
  * 
- * Realiza una petición POST a la API para guardar un usuario.
- * 
  * @param {{ username: string, email: string, password: string }} user - El objeto con
  *   los datos del usuario a guardar.
- * 
- * @returns {Promise<AxiosResponse<any>>} Una promesa que se resuelve con el objeto
- * response de axios que contiene el usuario guardado.
- * 
- * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
+ * @returns {Promise<AxiosResponse<any>>}
  */
 export const save = async ({ username, email, password }) => {
     try {
@@ -50,16 +40,8 @@ export const save = async ({ username, email, password }) => {
 
 /**
  * Actualiza un usuario por su ID.
- * 
- * Realiza una petición PUT a la API para actualizar un usuario
- * por su ID.
- * 
- * @param {{ id: number, username: string, email: string }} user - El usuario a actualizar con sus props id, username y email.
- * 
- * @returns {Promise<AxiosResponse<any>>} Una promesa que se resuelve con el objeto
- * response de axios que contiene el usuario actualizado.
- * 
- * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
+ * @param {{ id: number, username: string, email: string }} user
+ * @returns {Promise<AxiosResponse<any>>}
  */
 export const update = async ({ id, username, email }) => {
     try {
@@ -72,13 +54,7 @@ export const update = async ({ id, username, email }) => {
 
 /**
  * Elimina un usuario por su ID.
- * 
- * Realiza una petici n DELETE a la API para eliminar un usuario
- * por su ID.
- * 
  * @param {number} id - El ID del usuario a eliminar.
- * 
- * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
  */
 export const remove = async (id) => {
     try {

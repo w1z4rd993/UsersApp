@@ -3,13 +3,8 @@ import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 
 /**
- * Componente para el formulario de usuario.
- * 
- * Este componente devuelve un JSX.Element que 
- * representa el formulario de usuario.
- * 
- * @returns {JSX.Element} Un JSX.Element que representa 
- * el formulario de usuario.
+ * Formulario de usuario.
+ * @returns {JSX.Element}
  */
 export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
@@ -28,12 +23,9 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
 
     /**
-     * Maneja el cambio de entrada en los campos del formulario de usuario.
-     * Actualiza el estado `userForm` con el nuevo valor del campo 
+     * Actualiza el estado `userForm` con el nuevo valor del campo
      * correspondiente al nombre del campo modificado.
      * @param {Object} target - El objeto de evento del input modificado.
-     * @param {string} target.name - El nombre del campo de entrada.
-     * @param {string} target.value - El nuevo valor del campo de entrada.
      */
     const onInputChange = ({ target }) => {
 
@@ -46,11 +38,6 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
     /**
      * Maneja el submit del formulario de usuario.
-     * 
-     * Valida que los campos del formulario est n completos y
-     * llama a la función handlerAddUser() con el usuario
-     * construido en userForm. Luego, resetea el estado
-     * userForm con el valor de initialUserForm.
      * @param {Object} event - El objeto de evento del formulario.
      */
     const onSubmit = (event) => {
