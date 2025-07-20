@@ -2,6 +2,7 @@ import { useReducer, useState } from "react";
 import { usersReducer } from "../reducers/usersReducer";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { findAll } from "../services/userService";
 
 /*
  * Objeto que representa el estado inicial de la lista de usuarios.
@@ -48,6 +49,27 @@ export const useUsers = () => {
     const [userSelected, setUserSelected] = useState(initialUserForm);
     const [visibleForm, setVisibleForm] = useState(false);
     const navigate = useNavigate();
+
+    /**
+     * Realiza una petición GET a la API para obtener la lista de todos los usuarios.
+     * 
+     * Esta función utiliza el servicio findAll() para obtener la lista de usuarios
+     * y actualiza el estado de la lista de usuarios en el reducer.
+     * 
+     * @returns {Promise<void>} Una promesa que se resuelve cuando se completa
+     * la petición.
+     * 
+     * @throws {Error} Lanza un error en caso de que no se pueda realizar la petición.
+     */
+    const getUsers = async () => {
+        const result = await findAll();
+
+        console.log(result.data)
+        dispatch({
+            type: 'loadingUsers',
+            payload: result.data,
+        })
+    }
 
     /**
    * Maneja el formulario de registro de usuarios.
@@ -147,6 +169,7 @@ export const useUsers = () => {
         handlerRemoveUser,
         handlerUserSelectedForm,
         handlerOpenForm,
-        handlerCloseForm
+        handlerCloseForm,
+        getUsers
     };
 }

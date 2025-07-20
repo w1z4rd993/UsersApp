@@ -1,6 +1,6 @@
 import { UsersList } from "../components/UsersList"
 import { UserModalForm } from "../components/UserModalForm"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 
 
@@ -21,7 +21,12 @@ export const UsersPage = () => {
     Obtengo el contexto de usuarios, que contiene la lista de usuarios,
     el estado de visibilidad del formulario y la función para abrir el formulario.
     */
-    const { users, visibleForm, handlerOpenForm, } = useContext(UserContext);
+    const { users, visibleForm, handlerOpenForm, getUsers } = useContext(UserContext);
+
+
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     return (
         <>
