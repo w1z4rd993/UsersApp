@@ -2,7 +2,7 @@ import { useReducer, useState } from "react";
 import { usersReducer } from "../reducers/usersReducer";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { findAll } from "../services/userService";
+import { findAll, remove, save, update } from "../services/userService";
 
 /*
  * Objeto que representa el estado inicial de la lista de usuarios.
@@ -38,7 +38,7 @@ const initialUserForm = {
  * - handlerRemoveUser: Función para eliminar un usuario
  *   de la lista de usuarios.
  * - handlerUserSelectedForm: Función para actualizar el estado
- *   del usuario seleccionado en el formulario de edici n.
+ *   del usuario seleccionado en el formulario de edición.
  * - handlerOpenForm: Función para mostrar el formulario de edición
  *   de usuarios.
  * - handlerCloseForm: Función para ocultar el formulario de edición
@@ -63,8 +63,6 @@ export const useUsers = () => {
      */
     const getUsers = async () => {
         const result = await findAll();
-
-        console.log(result.data)
         dispatch({
             type: 'loadingUsers',
             payload: result.data,
@@ -78,10 +76,19 @@ export const useUsers = () => {
    * a la lista de usuarios.
    * @param {Object} user - El usuario que se va a agregar.
    */
-    const handlerAddUser = (user) => {
+    const handlerAddUser = async (user) => {
+
+        let response;
+        if (user.id === 0) {
+            response = await save(user);
+        } else {
+            response = await update(user);
+        }
+
+
         dispatch({
             type: (user.id === 0) ? 'addUser' : 'updateUser',
-            payload: user,
+            payload: response.data,
         });
 
         Swal.fire({
@@ -114,6 +121,7 @@ export const useUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
+                remove(id);
                 dispatch({
                     type: 'removeUser',
                     payload: id
