@@ -16,7 +16,6 @@ export const usersReducer = (state = [], action) => {
                 ...state,
                 {
                     ...action.payload,
-                    id: state.length > 0 ? state[state.length - 1].id + 1 : 1,
                 }
             ];
         case 'removeUser':
