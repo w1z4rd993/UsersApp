@@ -4,16 +4,14 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { findAll, remove, save, update } from "../services/userService";
 
-// Objeto que representa el estado inicial de la lista de usuarios.
+// Estado inicial de la lista de usuarios.
 const initialUsers = [];
 
 // Valores iniciales para userForm.
-const initialUserForm = {
-    id: 0,
-    username: '',
-    password: '',
-    email: ''
-}
+const initialUserForm = { id: 0, username: '', password: '', email: '' }
+
+// Valores iniciales para errors.
+const initialErrors = { username: '', password: '', email: '' };
 
 
 /**
@@ -24,6 +22,7 @@ export const useUsers = () => {
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
     const [userSelected, setUserSelected] = useState(initialUserForm);
     const [visibleForm, setVisibleForm] = useState(false);
+    const [errors, setErrors] = useState(initialErrors);
     const navigate = useNavigate();
 
     /**
@@ -43,26 +42,35 @@ export const useUsers = () => {
      */
     const handlerAddUser = async (user) => {
 
-        let response;
-        if (user.id === 0) {
-            response = await save(user);
-        } else {
-            response = await update(user);
+        try {
+
+            let response;
+            if (user.id === 0) {
+                response = await save(user);
+            } else {
+                response = await update(user);
+            }
+
+            dispatch({
+                type: (user.id === 0) ? 'addUser' : 'updateUser',
+                payload: response.data,
+            });
+
+            Swal.fire({
+                title: (user.id === 0) ? "Usuario creado" : "Usuario actualizado",
+                text: (user.id === 0) ? "El usuario ha sido creado con éxito!" : "El usuario ha sido actualizado con éxito",
+                icon: "success"
+            });
+            handlerCloseForm();
+            navigate("/users");
+
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setErrors(error.response.data);
+            } else {
+                throw error;
+            }
         }
-
-
-        dispatch({
-            type: (user.id === 0) ? 'addUser' : 'updateUser',
-            payload: response.data,
-        });
-
-        Swal.fire({
-            title: (user.id === 0) ? "Usuario creado" : "Usuario actualizado",
-            text: (user.id === 0) ? "El usuario ha sido creado con éxito!" : "El usuario ha sido actualizado con éxito",
-            icon: "success"
-        });
-        handlerCloseForm();
-        navigate("/users");
     }
 
     /**
@@ -120,12 +128,14 @@ export const useUsers = () => {
     const handlerCloseForm = () => {
         setVisibleForm(false);
         setUserSelected(initialUserForm);
+        setErrors({});
     }
     return {
         users,
         userSelected,
         initialUserForm,
         visibleForm,
+        errors,
         handlerAddUser,
         handlerRemoveUser,
         handlerUserSelectedForm,
